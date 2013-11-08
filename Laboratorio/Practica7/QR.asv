@@ -1,0 +1,19 @@
+function [v,m] = QR(A,B,maxim)
+
+C=A;
+D=B;
+
+for k= 1:maxim
+    [Q R]= qr(C);
+    [P,T]= qr(B];
+    C1= R*Q;
+    C= C1;
+    D1= T*P;
+    
+    if norm(tril(C1),inf)<(10^-4)
+        break;
+    end
+end
+v = diag(C);
+m = C;
+end

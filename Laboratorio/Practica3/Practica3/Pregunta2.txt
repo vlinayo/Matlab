@@ -1,0 +1,9 @@
+Pregunta 2:
+
+A) Creando un script en matlab el cual fue denominado como "sislineal.m" y mediante el uso de la función
+implementada en la pregunta 1E "gauss.m", logramos resolver el sistema de ecuaciones.
+
+B) Con los resultados obtenidos, podemos observar que una vez obtenida la función errork(k)= ||xspiv - x||2,
+la grafica obtenida comienza como una recta y luego crece como curva, esto muestra la norma
+de la diferencia de las soluciones del sistema de ecuación, y en este observamos como la norma se mantiene
+constante hasta llegar al punto x=12:22, y=0

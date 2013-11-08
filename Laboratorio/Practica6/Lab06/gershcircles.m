@@ -1,0 +1,91 @@
+%Veronica Liñayo
+%08-10615
+
+%Mediante el programa podemos visualizar en dos ventanas diferentes los
+%circulos por filas y los circulos por columnas de una matriz. El comando
+%hold on permite la superposición de gráficas sucesivas(en nuestro caso,
+%los diferentes círculos que han sido calculados en modo secuencial). Este
+%comando puede ser neutralizado mediante el comando hold off. Los comandos
+%title, xlabel, ylabel tienen como objetivo visualizar el título y las
+%etiquetas de los ejes de las figuras.
+%El comando patch fue utilizado para colorear los círculos, mientras que el
+%comando axis pone las escalas para los ejes x e y sobre el dibujo en curso.
+
+
+function gershcircles(A)
+
+%Dibuja los circulos de Gershgorin
+%Gershcircles(A) traza los circulos de Gershgorin para la matriz cuadrada A
+
+
+n=size(A);
+e=eig(A);
+radspect=max(abs((e)))
+n= n(1); circler=zeros(n,201);
+circlec=circler;
+center= diag(A); radiic=sum(abs(A-diag(center)));
+radiir=sum(abs(A'-diag(center))); one= ones(1,201);
+cosisin= exp(i*[0:pi/100:2*pi]);
+figure(1); title('Circulos por Filas');
+xlabel('Re');
+ylabel('Im');
+figure(2);title('Circulos por Columnas'); xlabel('Re'); ylabel('Im');
+
+    for k=1:n
+        a=0;
+        circlec(k,:)=center(k)*one + radiic(k)*cosisin;
+        circler(k,:)=center(k)*one + radiir(k)*cosisin;
+        figure(1);
+        patch(real(circler(k,:)),imag(circler(k,:)),'red');
+        hold on
+        plot(real(circler(k,:)),imag(circler(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'k*');
+        figure(2);
+        patch(real(circlec(k,:)),imag(circlec(k,:)),'green');
+        hold on
+        plot(real(circlec(k,:)),imag(circlec(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'k*');
+    end
+    
+    for k=1:n
+        a=0;
+        figure(1);
+        plot(real(circler(k,:)),imag(circler(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'*k');
+        figure(2);
+        plot(real(circlec(k,:)),imag(circlec(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'*k');
+    end
+    
+figure(1); axis image; hold off;
+figure(2); axis image; hold off
+
+eig(A)
+
+return  
+
+
+
+
+%Los Círculos de Gershgorin pueden utilizarse para localizar autovalores de
+%una matriz. Todo los autovalores de una matriz A dada, pertenecen a la
+%region del plano complejo que es la intersección de las dos regiones
+%formadas, respectivamente, por la unión de los círculos por filas y la
+%unión de los círculos por columnas.
+%Además, si m círculos por filas o m círculos por columnas, con 1<=m<=n,
+%fuesen disconexos de la unión de los n-m círculos restantes, entonces su
+%unión contendría exactamente m autovalores.
+
+%No hay garantía de que un círculo contenga autovalores, salvo si está
+%aislado de los otros.
+
+%Para aplicar con éxito el metodo de la potencia con traslacion es
+%necesario localizar(con mas o menos precision) los autovalores de A en el
+%plano complejo. Para ello usamos los Círculos de Gershgorin.
+%tomando el mayor valor posible de los autovalores como (miu) se procede a
+%resolver el metodo de la potencia trasladada. Con el fin de buscar el
+%autovalor mas cercano a el miu obtenido.

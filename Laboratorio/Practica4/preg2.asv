@@ -1,0 +1,33 @@
+%Pregunta2#
+C=[4.4,2.2,0.8,-0.9,1.7;2.2,4.3,1.1,1.4,1.0;0.8,1.1,4.0,1.4,1.8;-0.9,1.4,1.4,4.4,-1.5;1.7,1.0,1.8,-1.5,3.9];
+l=[2.3;1.8;4.5;5.0;7.2];
+
+E=[5,10,6,2;8,4,5,1;10,10,6,7;8,7,7,8];
+s=[2;0;8;8];
+
+%primero vemos si las matrices pueden tener descomposición choelsky, para
+%ello usamos el comando chol(a).
+
+w=chol(C);
+
+%Si el computador arroja ambas soluciones es porque si se puede aplicar
+%cholesky a ambas matrices, si nos arroja un error como: ??? Error using ==> chol
+%Matrix must be positive definite. entonces es porque una de las matrices
+%no es positiva definida y por lo tanto no se puede aplicar cholesky.
+
+%Para las matrices que admiten cholesky, usamos el algoritmo programado,
+%para hacer la descomposición.
+
+M=cholesky(C);
+N=M*M';
+%Ahora para la matriz que no tiene solución por cholesky aplicamos solución
+%con LU, de forma que queda:
+
+[L,U]=LU(E);
+D=L*U;
+%Ahora programamos la solucion de cada caso
+
+X1=solchol(N,l);
+X2=xlu(D,s);
+
+%tOM

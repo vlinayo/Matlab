@@ -1,0 +1,124 @@
+Laboratorio 3
+
+Pregunta 1#
+
+i) la matriz de la parte (a) no tiene descomposición Cholesky dado que no es una matriz definida positiva, y la martriz (b) si tiene descomposición Cholesky, y podemos comprobarlo mediante el uso de
+los siguientes comandos:
+
+creamos la matriz A, que es la matriz dada en (b)
+aplicamos el comando chol, para obtener la matriz cholesky la cual llamaremos C
+C=chol(A)
+y obtenemos:
+ans =
+
+    2.4495    0.8165    0.4082   -0.4082
+         0    1.8257    0.3651    0.1826
+         0         0    1.9235   -0.4679
+         0         0         0    1.6066
+
+lo que nos indica que la matriz puede ser descompuesta por la forma de Cholesky
+
+En cambio al realizar el mismo procedimiento con la matriz de la parte (a) obtenemos el siguiente error: "??? Error using ==> chol. Matrix must be positive definite."
+
+ii) Se toma la matriz de (b) y se corre el algoritmo programado en matlab como cholesky.m
+B= matriz (b)
+D=cholesky(A)
+
+
+cholesky(A)
+
+ans =
+
+    2.4495         0         0         0
+    0.8165    1.8257         0         0
+    0.4082    0.3651    1.9235         0
+   -0.4082    0.1826   -0.4679    1.6066
+
+
+lo que es igual a C'
+
+y como son matrices simetricas D=C'
+
+
+iii) Con el algoritmo creado en matlab como LU.m corremos el siguiente comando: 
+
+>> [L,U]=LU( A)
+
+para A=[1.012,-2.132,3.1041;-2.132,4.096,-7.013; 3.1040,-7.013,0.014] y obtenemos:
+
+L =
+
+    0.3260   -0.2142    1.0000
+   -0.6869    1.0000         0
+    1.0000         0         0
+
+
+U =
+
+    3.1040   -7.0130    0.0140
+         0   -0.7209   -7.0034
+         0         0    1.5991
+
+iv) Para solucionar los sistemas de ecuaciones lineales, resolvemos por sustitución hacia adelante y hacia atrás:
+
+Para (a)
+corremos el programa [XLU]=xlu(A,b)
+
+obtenemos:
+
+ans =
+
+    1.0014
+    1.0006
+    0.9999
+
+
+
+Para (b)
+
+Inicializamos A y b, respectivamente, y corremos el programa [x]=solchol(A,b) y obtenemos:
+
+ans =
+
+   -0.8586
+    2.4188
+   -0.9581
+   -1.2723
+
+
+v) Si, podemos asegurar que la matriz cuya solución se obtuvo por el metodo de Cholesky es positivo definida, mientras que el sistema resuelto por el método LU no lo es, debido a que no fue resuelto por
+el metodo de Cholesky a consecuencia del error obtenido en la primera parte, lo que establecia que esta no es una matriz positivo definida.
+
+
+
+Pregunta 2#
+
+Las soluciones son:
+
+x1 =
+
+    0.0066
+    0.0178
+    0.0292
+    0.0407
+    0.0523
+
+
+
+x2 =
+
+    0.1144
+   -0.0429
+    0.0821
+    0.0706
+    0.0938
+
+yt =
+
+    0.0096
+    0.0194
+    0.0296
+    0.0402
+    0.0512
+
+

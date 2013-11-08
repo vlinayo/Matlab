@@ -1,0 +1,124 @@
+Laboratorio 3:
+
+Pregunta 1:
+
+A) Para verificar si la matriz n=25 es invertible, se utiliza el comando inv(matriz(25))
+y la matriz(25) la obtenemos mediante la función programada en matlab.
+
+B) Para calcular A x A^-1 se procede a escribir en matlab lo siguiente:
+matriz(n) * inv(matriz(n)), para n=1,2,3,....n. podemos apreciar que mientras mayor es nuestro n la forma de la matriz identidad se pierde, 
+esto se debe a que el calculo de la máquina no es exacto, y tambien debido a lo que conocemos como errores de la máquina.
+
+y luego Para calcular || A* A^-1 -I||inf
+
+Procedo a crear la matriz A= matriz(25)
+y C= A* inv(A)- eye(25)
+y procedemos a calcular la norma: norma=norm(c,inf)
+
+
+C) Mediante la funcion, det(A) obtenemos la determinante de la matriz A, y det(inv(A)) obtenemos la determinante de la inversa de A, de esta forma calculamos
+det(A)*det(inv(A)) las cuales fueron asignadas como d1 y d2 respectivamente
+
+d1 =
+
+    5.482309129333590e-274
+
+d2 =
+
+   -1.940301388311195e+274
+
+para D= d1*d2
+
+	D =
+
+	 -10.637332014797103
+
+D) Usando el comando cond(A) obtenemos el numero de condición de la matriz A, 
+
+con =
+
+    4.827642286780613e+018
+
+Y usando norma infinito seria:
+
+Condición(A)= ||A|| * ||inv(A)||
+
+Queda asignado de la forma:
+	
+	condición= norm(A)* norm(inv(A))
+
+	condicion =
+
+    		4.218386905319268e+018
+
+E) Para solucionar el sistema Ax=b por metodo de eliminación Gaussiana y sin pivoteo se realiza el algoritmo guardado como gauss.m
+
+
+F) Para solucionar el sistema Ax=b usando x=A\b, asignamos A=matriz(25), y b=[1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25]
+y luego colocamos x= A\b
+obteniendo:
+
+x =
+
+  1.0e+012 *
+
+   0.000000005353760
+  -0.000000937660100
+   0.000039245272254
+  -0.000687022484248
+   0.006228417355139
+  -0.032315208978440
+   0.100293461495332
+  -0.189545963763027
+   0.232428942119354
+  -0.257451970194510
+   0.357026134268157
+  -0.426687826340928
+   0.488133129043448
+  -0.622315756000625
+  -0.103358564508234
+   1.717715201521473
+  -1.543877022812576
+  -0.376353341636836
+   0.425718768989394
+   0.540224880576404
+   0.373929512767204
+  -1.198948825549196
+   0.365823282177232
+   0.273052216784169
+  -0.129070724614181
+
+G) Generamos un vector w de unos de tamaño 25 por medio del comando ones(25,1), calculamos ||b-Aw||inf y ||x-w||inf
+para el caso de la pregunta E y la pregunta F.
+
+Para ambas ||b-Aw|| es:
+
+n=norm(p,inf)
+
+n =
+
+  24.296752839424080
+
+para E),||x-w||inf es igual a:
+
+nor=norm(g,inf)
+
+nor =
+
+  3.4601e+012
+
+
+para F), ||x-w||inf es igual a:
+
+n=norm((x-w),inf)
+
+n =
+
+    1.717715201520473e+012
+
+Podemos concluir que debido a las diferentes formas en las que se resuelve el sistema, es decir, metodo de la parte E y metodo de la parte F,
+se llegan a soluciones distintas debido al error de la máquina, dado que uno de los metodos plantea cierta cantidad de iteraciones las cuales llevan
+con facilidad a cometer un error de aproximación o redondeo, por lo tanto las normas son distintas, y por eso es que las x son diferentes a pesar que 
+son la solución del mismo sistema de ecuación.
+
+

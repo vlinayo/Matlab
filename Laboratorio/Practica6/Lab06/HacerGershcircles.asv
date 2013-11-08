@@ -1,0 +1,100 @@
+clear all
+clc
+format long
+
+%Matriz A
+B=[2,3;5,1];
+n=size(B);
+e=eig(B);
+radspect=max(abs((e)));
+n= n(1); circler=zeros(n,201);
+circlec=circler;
+center= diag(B); radiic=sum(abs(B-diag(center)));
+radiir=sum(abs(B'-diag(center))); one= ones(1,201);
+cosisin= exp(i*[0:pi/100:2*pi]);
+figure(3); title('Circulos por Filas');
+xlabel('Re');
+ylabel('Im');
+figure(4);title('Circulos por Columnas'); xlabel('Re'); ylabel('Im');
+
+    for k=1:n
+        b=0;
+        circlec(k,:)=center(k)*one + radiic(k)*cosisin;
+        circler(k,:)=center(k)*one + radiir(k)*cosisin;
+        figure(3);
+        patch(real(circler(k,:)),imag(circler(k,:)),'red');
+        hold on
+        plot(real(circler(k,:)),imag(circler(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'k*');
+        figure(4);
+        patch(real(circlec(k,:)),imag(circlec(k,:)),'green');
+        hold on
+        plot(real(circlec(k,:)),imag(circlec(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'k*');
+    end
+    
+    for k=1:n
+        a=0;
+        figure(3);
+        plot(real(circler(k,:)),imag(circler(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'*k');
+        figure(4);
+        plot(real(circlec(k,:)),imag(circlec(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'*k');
+    end
+    
+figure(3); axis image; hold off;
+figure(4); axis image; hold off
+eig(B)
+
+A=[1,2;4,1];
+n=size(A);
+e=eig(A);
+radspect=max(abs((e)));
+n= n(1); circler=zeros(n,201);
+circlec=circler;
+center= diag(A); radiic=sum(abs(A-diag(center)));
+radiir=sum(abs(A'-diag(center))); one= ones(1,201);
+cosisin= exp(i*[0:pi/100:2*pi]);
+figure(1); title('Circulos por Filas');
+xlabel('Re');
+ylabel('Im');
+figure(2);title('Circulos por Columnas'); xlabel('Re'); ylabel('Im');
+
+    for k=1:n
+        a=0;
+        circlec(k,:)=center(k)*one + radiic(k)*cosisin;
+        circler(k,:)=center(k)*one + radiir(k)*cosisin;
+        figure(1);
+        patch(real(circler(k,:)),imag(circler(k,:)),'red');
+        hold on
+        plot(real(circler(k,:)),imag(circler(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'k*');
+        figure(2);
+        patch(real(circlec(k,:)),imag(circlec(k,:)),'green');
+        hold on
+        plot(real(circlec(k,:)),imag(circlec(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'k*');
+    end
+    
+    for k=1:n
+        a=0;
+        figure(1);
+        plot(real(circler(k,:)),imag(circler(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'*k');
+        figure(2);
+        plot(real(circlec(k,:)),imag(circlec(k,:)),'k-',real(center(k)),imag(center(k)),'kx');
+        hold on
+        plot(e,a,'*k');
+    end
+    
+figure(1); axis image; hold off;
+figure(2); axis image; hold off
+eig(A)

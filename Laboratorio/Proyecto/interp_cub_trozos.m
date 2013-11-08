@@ -1,0 +1,73 @@
+function [S] = interp_cub_trozos(x, y, cond2, cond3)
+% Los Datos para realizar este código fueron obtenidos de la guía del profesor saúl y el libro Burden.
+n = length(x);
+% Primero Inicializamos nuestras variables, es decir los vectores de
+% los coeficientes a,b,c,d y los vectores para construir el SPLINE:
+a = y;               
+b = zeros(n-1,1);
+c = zeros(n,1);
+d = zeros(n-1,1);
+h = zeros(n-1,1);    
+p = zeros(n,1);      
+l = zeros(n,1);
+m = zeros(n,1);
+o = zeros(n,1);
+
+for i = 1: n-1         
+     h(i) = x(i+1)-x(i);
+end
+    
+%Si se reciben 4 parametros el spline sera amarrado y se toman las
+%siguientes inicializaciones.
+
+if (nargin == 4)                         
+   p(1) = 3*(a(2)-a(1))/h(1)-3*cond2;    
+   p(n) = 3*cond3-3*(a(n)-a(n-1))/h(n-1);
+end
+    
+% Se inicializa el vector p
+for i = 2: n-1         
+    p(i) = 3*(a(i+1)-a(i))/h(i) - 3*(a(i)-a(i-1))/h(i-1);
+end
+    
+% Cuando reciben 2 parametros el spline es natural y se inicializa de la siguiente forma.
+if (nargin == 2)       
+   l(1) = 1;
+   m(1) = 0;
+   o(1) = 0;
+elseif (nargin == 4)   % si son 4 parametros, tenemos spline amarrado.
+   l(1) = 2*h(1);
+   m(1) = 0.5;
+   o(1) = p(1)/l(1);
+end
+    
+% Se inicializan los vectores 
+for i = 2: n-1        
+    l(i) = 2*(x(i+1)-x(i-1))-h(i-1)*m(i-1);
+    m(i) = h(i)/l(i);
+    o(i) = (p(i) - h(i-1)*o(i-1))/l(i);
+end
+    
+if (nargin == 2)       % spline natural
+   l(n) = 1;
+   o(n) = 0;
+   c(n) = 0;
+elseif (nargin == 4)   % spline amarrado
+   l(n) = h(n-1)*(2-m(n-1));
+   o(n) = (p(n)-h(n-1)*o(n-1))/l(n);
+   c(n) = o(n);
+end
+        
+% Vectores de Coeficientes.
+for j = n-1: -1: 1
+   c(j) = o(j) - m(j)*c(j+1);
+   b(j) = (a(j+1)-a(j))/h(j) - h(j)*(c(j+1)+2*c(j))/3;
+   d(j) = (c(j+1)-c(j))/(3*h(j));
+end
+   
+% Se forma la matriz de los coeficientes del Spline
+S(1:n-1,1) = a(1:n-1);
+S(1:n-1,2) = b;
+S(1:n-1,3) = c(1:n-1);
+S(1:n-1,4) = d;
+end

@@ -1,0 +1,57 @@
+Pregunta 1:
+
+1.1)La Matriz A es definida Positiva.
+
+Pregunta 2:
+
+2.1)El método de Jacobi 
+Jacobi se resuelve de la forma:
+A= D+L+U
+donde
+D es una matriz Diagonal.
+L es una matriz triangular inferior
+U es una matriz triangular superior
+
+Por lo tanto siempre converge si la matriz A es estrictamente diagonal dominante y puede converger incluso si esta condición no se
+satisface. Es necesario, sin embargo, que los elementos de la diagonal en la matriz sean mayores (en magnitud) que los otros elementos.
+
+
+El método de Gauss-Seidel
+x^k=(D-L)^-1(Ux^(k-1)+b)
+dond D, -L, y U, representan matriz diagonal, triangular inferior y triangular superior de A respectivamente.
+entonces este método es aplicable a matrices extrictamente diagonal dominantes o a matrices simétricas positivas.
+
+2.2) La matriz dada no es estricatamente diagonal dominante.
+para w=1
+Los metodos convergen.
+para los valores de la matriz dada A,
+b=[2;0;0]
+x=[1;1;1]
+tol=1*10-8
+max_it=20
+
+Pregunta 3
+
+3.1) funcion nor.m hecha en matlab.
+
+3.2) La matriz dada A, no es estrictamente diagonal dominante.
+
+>> nor(B,1)
+
+X =
+
+     4
+
+>> nor(B,2)
+
+X =
+
+    3.7988
+
+>> nor(B,inf)
+
+X =
+
+     6
+
+

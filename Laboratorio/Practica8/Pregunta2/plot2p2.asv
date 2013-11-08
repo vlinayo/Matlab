@@ -1,0 +1,10 @@
+load datalab8p2v2.mat
+coef = newton(x2,y)
+x0=linspace(-2,7,100)';
+for xt=-2.5:2.5
+y1=hornerV(coef,xt);
+end
+plot(x2,y,'*',x0,y1)
+hold on
+plot(x,y,'c:')
+legend('Interpolacion de Newton')

@@ -1,0 +1,174 @@
+Laboratorio 8#
+
+Pregunta 1
+
+1.1 Usando el algoritmo programado en matlab como newton.m obtenemos los coeficientes del polinomio.
+
+difdiv(x,y)
+
+ans =
+
+    1.0000
+    0.0015
+   -0.2554
+    0.0081
+    0.0091
+    0.0031
+   -0.0013
+    0.0002
+   -0.0000
+    0.0000
+
+1.2 Usando la forma anidada de Horner, y el algoritmo programado para hallar los coeficientes anteriormente, se crean
+dos script, hornerV.m " que contiene el algoritmo de horner" y Lab8p1.m que nos permite encontrar la grafica
+
+Donde horner toma como valores de entrada a los coeficientes del polinomio, y al pto que queremos encontrar, o al vector z=1:n, para n igual al tamaño de X (es decir 10)
+
+ hornerV(p,pto)
+
+ans =
+
+    1.0000
+    0.7652
+    0.2239
+   -0.2601
+   -0.3972
+   -0.1776
+    0.1506
+    0.2993
+    0.1200
+   -0.6723
+
+
+
+Pregunta 2
+
+2.1 Hallamos el polinomio Interpolante p(t) usando el algoritmo del archivo newtonp.m
+
+obteniendo:
+
+	2,55036368377099e-06
+
+	0,260164764936621
+
+	0,426215520658327
+
+	6214,75301105496
+	
+	1066230,93162808
+
+	44731511,7511858
+
+	874285012,520665
+
+	10446017315,7965
+
+	88196799494,3545
+
+	574476725728,687
+
+	3057956199024,33
+
+	13845832750862,9
+
+	54896877850968,3
+
+	194792633387378
+
+	629035325034748
+
+	1,87321214150741e+15
+
+	5,19881652865783e+15
+
+2.2 Buscamos la posicion de la particula para t=1,-1,0,0.5,1.5
+Es decir evaluamos el polinomio en dichos puntos.
+
+Para esto usamos el archivo difdiv.m para encontrar los coeficientes, y luego hornerV donde los valores de entrada son
+los coeficientes acabados de encontrar, y t=1,-1,0,0.5,1.5 que son los ptos a evaluar.
+
+obteniendo:
+
+
+>> hornerV(coef,t)
+
+ans =
+
+    0.2602
+
+>> hornerV(coef,-1)
+
+ans =
+
+   -0.2601
+
+>> hornerV(coef,1)
+
+ans =
+
+    0.2602
+
+>> hornerV(coef,0)
+
+ans =
+
+  2.5504e-006
+
+>> hornerV(coef,0.5)
+
+ans =
+
+    0.0763
+
+>> hornerV(coef,1.5)
+
+ans =
+
+    0.0505
+
+Para ver si lo obtenido se aproxima al valor real corremos preg2.m
+obteniendo :
+y2 =
+
+   -0.2601
+    0.2601
+         0
+    0.0763
+    0.0497
+
+y1 =
+
+   -0.2601
+    0.2602
+    0.0000
+    0.0763
+    0.0505
+
+donde:
+y2 valor real
+y1 valor aproximado
+
+Podemos ver que tenemos una buena aproximación del resultado.
+
+y ahora para la siguiente pregunta usamos plotp2.m para ver la grafica de la interpolacion de newton, con el fin de elegir los 3 puntos que agregaremos a x.
+
+2.3 Ver plotp2.m y plot2p2.m, la primera me da la grafica sin los 3 ptos adicionales, esta me permite ver de forma estratégica que puntos agregar al x.
+los ptos serian: -0.6;0.5;1.2 
+El problema lo tuve al agregar los 3 ptos al x dado, debido a que el tamaño de x es distinto al de y, y al correr difdiv(x,y) me da un error
+por usar vectores de distintos tamaños, por lo tanto no se pudo obtener la solucion de esa parte del ejercicio. 
+
+
+3.
+
+
+
+
+
+
+
+
+
+
+
+
+
